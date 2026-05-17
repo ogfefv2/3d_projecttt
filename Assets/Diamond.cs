@@ -13,6 +13,8 @@ public class Diamond : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             Destroy(gameObject);
+            Inventory inventory = other.GetComponent<Inventory>();
+            inventory.AddDiamond();
         }
     }
 }
