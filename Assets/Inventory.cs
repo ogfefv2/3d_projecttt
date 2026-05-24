@@ -4,13 +4,28 @@ using UnityEngine;
 public class Inventory : MonoBehaviour
 {
     private int _diamondAmmount;
-    public event Action<int> ONCanvasUpdate;
+    private int _goldAmmount;
 
 
-    public void AddDiamond()
+    public EnemyState state;
+
+    public event Action<int, int> ONCanvasUpdate;
+
+
+    public void AddResource(Resource resource)
     {
-        _diamondAmmount++;
-        ONCanvasUpdate?.Invoke(_diamondAmmount);
-        Debug.Log(_diamondAmmount);
+
+        switch (resource)
+        {
+            case Resource.Diamond:
+                _diamondAmmount++;
+                break;
+            case Resource.Gold:
+                _goldAmmount++;
+                break;
+        }
+
+        
+        ONCanvasUpdate?.Invoke(_diamondAmmount,_goldAmmount);
     }
 }
